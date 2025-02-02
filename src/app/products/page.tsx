@@ -33,7 +33,7 @@ export default function Product() {
         const fetchProducts = async () => {
             try {
                 const fetchedProducts = await client.fetch(
-                    `*[_type == 'products' && category == 'tshirt']{
+                    `*[_type == 'products']{
                         "image": image.asset->url,
                         category,
                         discountPercent,
@@ -42,7 +42,7 @@ export default function Product() {
                         description,
                         price,
                         _id
-                    }[0...4]`
+                    }[4...8]`
                 );
                 setProducts(fetchedProducts);
             } catch (error) {
@@ -62,7 +62,7 @@ export default function Product() {
                         products.map((data) => {
                             return (
                                 <div key={data._id} className="flex-shrink-0">
-                                    <Link href={`/product/${data._id}`}>
+                                    <Link href={`/products/${data._id}`}>
                                         <div className="w-[200px] md:w-[283px] h-[200px] md:h-[290px] bg-[#F0EEED] rounded-[20px]">
                                             {data.image && (
                                                 <Image

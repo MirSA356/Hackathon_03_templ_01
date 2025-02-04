@@ -20,11 +20,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { BreadcrumbCollapsed } from "@/components/Breadcrupm";
 import { removeOrderFromLocalStorage } from "../Redux/features/cart";
-
+import { useRouter } from "next/navigation";
+import client from "@/sanity/lib/client";
 // Form schema with validations
 const formSchema = z.object({
   fullName: z.string().min(1, "Full name is required").max(100, "Name is too long"),
@@ -38,6 +39,7 @@ type FormdType = z.infer<typeof formSchema>;
 
 function Checkout() {
   const dispatch = useDispatch()
+  const router = useRouter()
   // toastify
   const notifySuccess = () =>
     toast.success("Order placed successfully!", {
@@ -121,6 +123,7 @@ function Checkout() {
       dispatch(removeOrderFromLocalStorage())
       // Clear form fields after submission
       form.reset();
+      router.push("/payment");
     } catch (error) {
       console.error("Error submitting form:", error); // Debugging log
       notifyError("Failed to place the order. Please try again.");
@@ -223,11 +226,11 @@ function Checkout() {
             )}
           />
 
-         {cartArray.length >= 1 && (
+         {/* {cartArray.length >= 1 && (   */}
            <Button className="w-full" type="submit">
            Place Order
          </Button>
-         )}
+         {/* )} */}
           {/* toastify */}
           <ToastContainer
             position="bottom-right"

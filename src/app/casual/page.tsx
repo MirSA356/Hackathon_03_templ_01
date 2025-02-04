@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 import Link from "next/link"; // Import Link from Next.js
 import { BreadcrumbCollapsed } from "@/components/Breadcrupm";
 import Paginationpage from "@/components/pagination";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaStar } from "react-icons/fa";
 import { urlFor } from "@/sanity/lib/image";
+import client from "@/sanity/lib/client";
 interface Product {
     _id: string;
     name: string;

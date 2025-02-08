@@ -59,7 +59,7 @@ export default function T_shirts(){
                     product.map((data,index)=>{
                         return(
                               <div key={index}>
-                                 <Link href={`/product/${data.id}`}>
+                                 <Link href={`/products/${data.id}`}>
                                  <div className="w-[160px] h-[160px] md:w-[290px] mt-5 md:mt-0 md:h-[290px] bg-[#F0EEED] rounded-[20px]">
                                   <Image src={data.img_url} alt={data.title}
                                   className="w-full h-full rounded-[20px]"
